@@ -2,12 +2,11 @@
 
 (defpackage :funcallable
   (:use :cl)
-  (:export :def-funcallable-class
+  (:nicknames :fc)
+  (:import-from :closer-mop :funcallable-standard-class)
+  (:export :funcallable-standard-class
            :def-funcall))
 (in-package :funcallable)
-
-(defmacro def-funcallable-class (&body body)
-  `(defclass ,@body (:metaclass closer-mop:funcallable-standard-class)))
 
 (defmacro def-funcall (cls vars &body body)
   (let ((self (intern (symbol-name 'self))))

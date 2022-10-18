@@ -12,7 +12,7 @@ This utility is useful when you want to implement a method like Python's `object
 (defclass person ()
   ((name :initarg :name
          :reader name))
-  (:metaclass funcallable-class))
+  (:metaclass funcallable-standard-class))
 
 (def-funcall person ()
   (format t "Hello, I'm ~a." (name self))) ; self is bound to the funcalled object.
