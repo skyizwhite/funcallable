@@ -1,12 +1,18 @@
-# Funcallable (WIP)
+# Funcallable
 
-Common Lisp utility for defining funcallable objects
+Common Lisp utility for defining funcallable objects, minimal wrapper of [closer-mop](https://github.com/pcostanza/closer-mop)
 
 # Motivation
 
 This utility is useful when you want to implement a method like Python's `object.__call__`.
 
 # Usage
+
+Install via rowsell
+```bash
+$ ros install skyizwhite/funcallable
+```
+
 ```lisp
 (def-funcallable-class person ()
   ((name :initarg :name
