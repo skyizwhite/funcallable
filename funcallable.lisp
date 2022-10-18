@@ -10,7 +10,9 @@
   `(defclass ,@body (:metaclass closer-mop:funcallable-standard-class)))
 
 (defmacro def-funcall (cls vars &body body)
-  `(defmethod initialize-instance :after ((self ,cls) &key)
-     (closer-mop:set-funcallable-instance-function
-      self
-      (lambda ,vars ,@body))))
+  (let ((self (intern (symbol-name 'self))))
+    `(defmethod initialize-instance :after ((obj ,cls) &key)
+       (let ((,self obj))
+         (closer-mop:set-funcallable-instance-function
+          ,self
+          (lambda ,vars ,@body))))))
