@@ -1,6 +1,7 @@
 # Funcallable (WIP)
 
-Common Lisp utility for defining funcallable objects
+Common Lisp utility for defining funcallable objects,
+minimal wrapper of [`closer-mop:funcallable-standard-class`](https://github.com/pcostanza/closer-mop)
 
 # Motivation
 
@@ -8,9 +9,10 @@ This utility is useful when you want to implement a method like Python's `object
 
 # Usage
 ```lisp
-(def-funcallable-class person ()
+(defclass person ()
   ((name :initarg :name
-         :reader name)))
+         :reader name))
+  (:metaclass funcallable-class))
 
 (def-funcall person ()
   (format t "Hello, I'm ~a." (name self))) ; self is bound to the funcalled object.
